@@ -14,10 +14,6 @@ import './a';
 import './c';
 import './b';
 
-// Modules from the Node.js "standard" library sorted by name
-import { readFile, writeFile } from 'fs';
-import * as path from 'path';
-
 // Third-party modules sorted by name
 import aa from 'aa';
 import bb from 'bb';
