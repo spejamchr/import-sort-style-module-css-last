@@ -50,7 +50,7 @@ export default function(styleApi: IStyleAPI): IStyleItem[] {
     // import ... from "./style.module.css";
     {
       match: isStyleModule,
-      sort: moduleName(naturally),
+      sort: [dotSegmentCount, moduleName(naturally)],
       sortNamedMembers: alias(naturally),
     },
     { separator: true },
