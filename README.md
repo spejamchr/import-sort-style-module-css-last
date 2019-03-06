@@ -1,4 +1,4 @@
-# import-sort-style-module-css-first
+# import-sort-style-module-css-last
 
 A style for [import-sort](https://github.com/renke/import-sort) that is focused
 on modules, and always imports css styles last.
@@ -15,7 +15,7 @@ import './c';
 import './b';
 
 // Modules from the Node.js "standard" library sorted by name
-import {readFile, writeFile} from 'fs';
+import { readFile, writeFile } from 'fs';
 import * as path from 'path';
 
 // Third-party modules sorted by name

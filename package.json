@@ -1,5 +1,5 @@
 {
-  "name": "import-sort-style-module-css-first",
+  "name": "import-sort-style-module-css-last",
   "version": "1.0.0",
   "description": "An import-sort style that groups and sorts by module, and always imports css styles last",
   "main": "lib/index.js",
@@ -11,7 +11,7 @@
     "lint": "eslint --ext ts src"
   },
   "author": "Spencer Christiansen <jc.spencer92@gmail.com> (https://github.com/spejamchr)",
-  "repository": "spejamchr/import-sort-style-module-css-first",
+  "repository": "spejamchr/import-sort-style-module-css-last",
   "license": "MIT",
   "files": [
     "lib"
