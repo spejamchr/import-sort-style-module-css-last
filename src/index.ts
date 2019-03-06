@@ -20,7 +20,6 @@ export default function(styleApi: IStyleAPI): IStyleItem[] {
   return [
     // import "foo"
     { match: and(hasNoMember, isAbsoluteModule) },
-    { separator: true },
 
     // import "./foo"
     { match: and(hasNoMember, isRelativeModule) },
@@ -39,7 +38,6 @@ export default function(styleApi: IStyleAPI): IStyleItem[] {
       sort: moduleName(naturally),
       sortNamedMembers: alias(naturally),
     },
-    { separator: true },
 
     // import ... from "./foo";
     // import ... from "../foo";
@@ -48,7 +46,6 @@ export default function(styleApi: IStyleAPI): IStyleItem[] {
       sort: [dotSegmentCount, moduleName(naturally)],
       sortNamedMembers: alias(naturally),
     },
-    { separator: true },
 
     // import ... from "./style.module.css";
     {
