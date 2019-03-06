@@ -9,10 +9,13 @@ export default function(styleApi: IStyleAPI): IStyleItem[] {
     isAbsoluteModule,
     isNodeModule,
     isRelativeModule,
+    isScopedModule,
     moduleName,
     naturally,
-    unicode,
+    not,
   } = styleApi;
+
+  const isStyleModule = moduleName((s: string) => !!s.match('style.module.css'));
 
   return [
     // import "foo"
@@ -23,28 +26,35 @@ export default function(styleApi: IStyleAPI): IStyleItem[] {
     { match: and(hasNoMember, isRelativeModule) },
     { separator: true },
 
-    // import … from "fs";
+    // import ... from 'foo';
     {
-      match: isNodeModule,
+      match: and(isAbsoluteModule, not(isScopedModule)),
       sort: moduleName(naturally),
-      sortNamedMembers: alias(unicode),
+      sortNamedMembers: alias(naturally),
+    },
+
+    // import ... from "@scope/foo";
+    {
+      match: isScopedModule,
+      sort: moduleName(naturally),
+      sortNamedMembers: alias(naturally),
     },
     { separator: true },
 
-    // import … from "foo";
+    // import ... from "./foo";
+    // import ... from "../foo";
     {
-      match: isAbsoluteModule,
-      sort: moduleName(naturally),
-      sortNamedMembers: alias(unicode),
-    },
-    { separator: true },
-
-    // import … from "./foo";
-    // import … from "../foo";
-    {
-      match: isRelativeModule,
+      match: and(isRelativeModule, not(isStyleModule)),
       sort: [dotSegmentCount, moduleName(naturally)],
-      sortNamedMembers: alias(unicode),
+      sortNamedMembers: alias(naturally),
+    },
+    { separator: true },
+
+    // import ... from "./style.module.css";
+    {
+      match: isStyleModule,
+      sort: moduleName(naturally),
+      sortNamedMembers: alias(naturally),
     },
     { separator: true },
   ];
